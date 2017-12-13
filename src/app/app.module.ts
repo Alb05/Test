@@ -27,6 +27,7 @@ import { LoginComponent } from './components/login/login.component';
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'ajax', component: AjaxComponent },
+      { path: 'login', component: LoginComponent },
       { path: '**', redirectTo: 'home' }
     ])
   ],
