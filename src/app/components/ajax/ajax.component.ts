@@ -17,18 +17,17 @@ export class AjaxComponent {
   userForm: NgForm;
   
   constructor(private http: HttpClient) {
-    this.user = {
-      id: null,
-      nome: null,
-      cognome: null,
-      anni: null
+    //this.user = {
+    //  id: null,
+    //  nome: null,
+    //// anni: null
     };
   }
 
-  OnSubmit() {
-    this.http.get<IPerson[]>(`http://api.test/test?id=${this.user.id}`)
-    .subscribe(data => {
-      this.people = data;
-    });
-  }
-}
+  //OnSubmit() {
+    //this.http.get<IPerson[]>(`http://api.test/test?id=${this.user.id}`)
+    //.subscribe(data => {
+    // this.people = data;
+  //  });
+ // }
+//}
