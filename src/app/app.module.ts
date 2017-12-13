@@ -24,11 +24,11 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'ajax', component: AjaxComponent },
       { path: 'login', component: LoginComponent },
-      { path: '**', redirectTo: 'home' }
+      { path: '**', redirectTo: 'login' }
     ])
   ],
   providers: [],
