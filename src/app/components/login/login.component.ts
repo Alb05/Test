@@ -4,9 +4,9 @@ import { IPerson } from '../../models/person.model';
 import { NgForm } from "@angular/forms";
 
 @Component({
-  selector: 'app-ajax',
-  templateUrl: './ajax.component.html',
-  styleUrls: ['./ajax.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
 
