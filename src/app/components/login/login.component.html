@@ -1,0 +1,36 @@
+<div class="col-6 offset-6">
+    <h1>Login</h1>
+    <p>Non sei registrato? <a class="btn btn-primary" [routerLink]="['/registration']">Registrati</a></p>
+    <form (ngSubmit)="OnSubmit()" #userForm="ngForm">
+        <div class="form-group">
+            <label for="USERNAME">Username</label>
+            <input
+                id="USERNAME"
+                name="USERNAME"
+                class="form-control"
+                [(ngModel)]="userInput.USERNAME"
+                required
+                maxlength="32"
+                #USERNAME="ngModel"
+            />
+            <div *ngIf="!(USERNAME.valid || USERNAME.pristine)" class="alert alert-danger">
+                <div *ngIf="USERNAME.errors.required">Il campo è obbligatorio</div>
+                <div *ngIf="USERNAME.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
+            </div>
+            <label for="PASSWORD">Password</label>
+            <input
+                id="PASSWORD"
+                name="PASSWORD"
+                class="form-control"
+                type="password"
+                [(ngModel)]="userInput.PASSWORD"
+                required
+                #PASSWORD="ngModel"
+            />
+            <div *ngIf="!(PASSWORD.valid || PASSWORD.pristine)" class="alert alert-danger">
+                <div *ngIf="PASSWORD.errors.required">Il campo è obbligatorio</div>
+            </div>
+            <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+</div>
