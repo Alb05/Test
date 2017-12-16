@@ -14,10 +14,31 @@ export class CartComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    /*
     this.http.get<IBook[]>('http://api.mano/api/carrello.php')
     .subscribe(data => {
       this.myBooks = data;
     });
+    */
   }
 
+  RemoveItem(id: number, qty: number) {
+    this.http.post<boolean>('http://api.mano/api/rimuovi.php', { 'bookid': id, 'bookqty': qty })
+    .subscribe(data => {
+      console.log(data);
+    });
+  }
+
+  Logout() {
+    this.http.get<boolean>('http://api.mano/api/logout.php').subscribe(data=> {
+      console.log(data);
+    });
+  }
+
+  Order() {
+    this.http.get<boolean>('http://api.mano/api/ordina.php')
+    .subscribe(data => {
+      console.log(data);
+    });
+  }
 }

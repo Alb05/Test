@@ -30,6 +30,7 @@ import { CartComponent } from './components/cart/cart.component';
       { path: 'home', component: HomeComponent },
       { path: 'registration', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'cart', component: CartComponent },
       { path: '**', redirectTo: 'login' }
     ])
   ],

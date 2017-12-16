@@ -28,45 +28,55 @@
             <a class="btn btn-danger" (click)="Logout()">Logout</a>
         </div>
     </div>
-    <p *ngIf="!books"><em>Loading books...</em></p>
+    <div class='row'>
+        <div class='col-sm-12'>
+            <p *ngIf="!books"><em>Loading books...</em></p>
 
-    <table class='table' *ngIf="books">
-        <thead>
-            <tr>
-                <th>Titolo</th>
-                <th>ISBN</th>
-                <th>Autore</th>
-                <th>Categoria</th>
-                <th>Descrizione</th>
-                <th>Numero di pagine</th>
-                <th>Data di pubblicazione</th>
-                <th>Prezzo</th>
-                <th>Quantità disponibile</th>
-                <th>Aggiungi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let book of books">
-                <td>{{ book.TITLE }}</td>
-                <td>{{ book.ISBN }}</td>
-                <td>{{ book.AUTHOR }}</td>
-                <td>{{ book.CATEGORY }}</td>
-                <td>{{ book.DESCRIPTION }}</td>
-                <td>{{ book.PAGES }}</td>
-                <td>{{ book.PUB_DATE }}</td>
-                <td>{{ book.PRICE }} €</td>
-                <td>{{ book.QUANTITY }}</td>
-                <td>
-                    <input
-                        name="qty"
-                        type="number"
-                        max="{{ book.QUANTITY }}"
-                        value="1"
-                        #qty
-                    />
-                    <button class="btn btn-success" (click)="AddToCart(book.BOOK_ID, qty.value)">Aggiungi</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            <table class='table' *ngIf="books">
+                <thead>
+                    <tr>
+                        <th>Titolo</th>
+                        <th>ISBN</th>
+                        <th>Autore</th>
+                        <th>Categoria</th>
+                        <th>Descrizione</th>
+                        <th>Numero di pagine</th>
+                        <th>Data di pubblicazione</th>
+                        <th>Prezzo</th>
+                        <th>Quantità disponibile</th>
+                        <th>Aggiungi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let book of books">
+                        <td>{{ book.TITLE }}</td>
+                        <td>{{ book.ISBN }}</td>
+                        <td>{{ book.AUTHOR }}</td>
+                        <td>{{ book.CATEGORY }}</td>
+                        <td>{{ book.DESCRIPTION }}</td>
+                        <td>{{ book.PAGES }}</td>
+                        <td>{{ book.PUB_DATE }}</td>
+                        <td>{{ book.PRICE }} €</td>
+                        <td>{{ book.QUANTITY }}</td>
+                        <td>
+                            <input
+                                name="bookid"
+                                type="hidden"
+                                value="{{ book.BOOK_ID }}"
+                                #bookid
+                            />
+                            <input
+                                name="qty"
+                                type="number"
+                                max="{{ book.QUANTITY }}"
+                                value="1"
+                                #qty
+                            />
+                            <button class="btn btn-success" (click)="AddToCart(bookid.value, qty.value)">Aggiungi</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

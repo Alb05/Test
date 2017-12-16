@@ -1,31 +1,52 @@
 <div class='col-sm-12'>
-    <table class='table' *ngIf="myBooks">
-        <thead>
-          <tr>
-            <th>Titolo</th>
-            <th>Descrizione</th>
-            <th>Quantità</th>
-            <th>Prezzo Totale</th>
-            <th>Rimuovi</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let book of myBooks">
-              <td>{{ book.TITLE }}</td>
-              <td>{{ book.DESCRIPTION }}</td>
-              <td>{{ book.QUANTITY }}</td>
-              <td>{{ book.PRICE * book.QUANTITY }}</td>
-              <td>
-                  <input
-                    name="rmQty"
-                    type="number"
-                    max="{{ book.QUANTITY }}"
-                    value="1"
-                    #rmQty
-                  />
-                  <button class="btn btn-danger" (click)="RemoveItem(book.BOOK_ID, rmQty.value)">Rimuovi</button>
-              </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class='row'>
+        <div class="col-sm-3">
+            <h1>Di Mano In Mano</h1>
+        </div>
+        <div class="col-sm-3 col-sm-offset-6">
+            <a class="btn btn-primary" [routerLink]="['/home']">Vai al negozio</a>
+            <a *ngIf="myBooks" class="btn btn-success" (click)="Order()">Ordina</a>
+            <a class="btn btn-danger" (click)="Logout()">Logout</a>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-12'>
+            <p *ngIf="!myBooks"><em>Nessun elemento nel carrello</em></p>
+            <table class='table' *ngIf="myBooks">
+                <thead>
+                  <tr>
+                    <th>Titolo</th>
+                    <th>Descrizione</th>
+                    <th>Quantità</th>
+                    <th>Prezzo Totale</th>
+                    <th>Rimuovi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let book of myBooks">
+                      <td>{{ book.TITLE }}</td>
+                      <td>{{ book.DESCRIPTION }}</td>
+                      <td>{{ book.QUANTITY }}</td>
+                      <td>{{ book.PRICE * book.QUANTITY }}</td>
+                      <td>
+                          <input
+                            name="rmBookId"
+                            type="hidden"
+                            value="{{ book.BOOK_ID }}"
+                            #rmBookId
+                          />
+                          <input
+                            name="rmQty"
+                            type="number"
+                            max="{{ book.QUANTITY }}"
+                            value="1"
+                            #rmQty
+                          />
+                          <button class="btn btn-danger" (click)="RemoveItem(rmBookId.value, rmQty.value)">Rimuovi</button>
+                      </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

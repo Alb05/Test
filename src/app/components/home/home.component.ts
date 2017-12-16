@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  AddToCart(id, qty) {
+  AddToCart(id: number, qty: number) {
     this.http.post<boolean>('http://api.mano/api/carrello.php', { 'bookid': id, 'bookqty': qty })
     .subscribe(data=> {
       console.log(data);
