@@ -25,7 +25,7 @@
         </div>
         <div class="col-sm-2">
             <a class="btn btn-primary" [routerLink]="['/cart']">Vai al carrello</a>
-            <a class="btn btn-danger" [routerLink]="['/logout']">Logout</a>
+            <a class="btn btn-danger" (click)="Logout()">Logout</a>
         </div>
     </div>
     <p *ngIf="!books"><em>Loading books...</em></p>

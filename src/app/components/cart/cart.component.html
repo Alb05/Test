@@ -1,0 +1,31 @@
+<div class='col-sm-12'>
+    <table class='table' *ngIf="myBooks">
+        <thead>
+          <tr>
+            <th>Titolo</th>
+            <th>Descrizione</th>
+            <th>Quantità</th>
+            <th>Prezzo Totale</th>
+            <th>Rimuovi</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of myBooks">
+              <td>{{ book.TITLE }}</td>
+              <td>{{ book.DESCRIPTION }}</td>
+              <td>{{ book.QUANTITY }}</td>
+              <td>{{ book.PRICE * book.QUANTITY }}</td>
+              <td>
+                  <input
+                    name="rmQty"
+                    type="number"
+                    max="{{ book.QUANTITY }}"
+                    value="1"
+                    #rmQty
+                  />
+                  <button class="btn btn-danger" (click)="RemoveItem(book.BOOK_ID, rmQty.value)">Rimuovi</button>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

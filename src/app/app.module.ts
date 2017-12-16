@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ValidateDirective } from './directives/validate.directive';
+import { CartComponent } from './components/cart/cart.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ValidateDirective } from './directives/validate.directive';
     HomeComponent,
     LoginComponent,
     RegistrationComponent,
-    ValidateDirective
+    ValidateDirective,
+    CartComponent
   ],
   imports: [
     BrowserModule,

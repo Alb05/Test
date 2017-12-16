@@ -43,25 +43,34 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.http.get<IBook[]>('http://api.mano/api/elenco')
+    this.http.get<IBook[]>('http://api.mano/api/elenco.php')
     .subscribe(data => {
       this.books = data;
     });
 
-    this.http.get<ICategory[]>('http://api.mano/api/categorie')
+    this.http.get<ICategory[]>('http://api.mano/api/categorie.php')
     .subscribe(data => {
       this.categories = data;
     });
   }
 
   CategoryFilter() {
-    this.http.get<IBook[]>(`http://api.mano/api/elenco?category=${this.inputCat.CATEGORY_ID}`)
+    this.http.get<IBook[]>(`http://api.mano/api/elenco.php?category=${this.inputCat.CATEGORY_ID}`)
     .subscribe(data => {
       this.books = data;
     });
   }
 
   AddToCart(id, qty) {
-    this.http.post<boolean>('http://api.mano/api/carrello', { 'bookid': id, 'bookqty': qty });
+    this.http.post<boolean>('http://api.mano/api/carrello.php', { 'bookid': id, 'bookqty': qty })
+    .subscribe(data=> {
+      console.log(data);
+    });
+  }
+
+  Logout() {
+    this.http.get<boolean>('http://api.mano/api/logout.php').subscribe(data=> {
+      console.log(data);
+    });
   }
 }

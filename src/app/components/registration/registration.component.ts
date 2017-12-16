@@ -32,7 +32,7 @@ export class RegistrationComponent {
     };
   }
   OnSubmit() {
-    this.http.post<IUser>('http://api.mano/api/registration',
+    this.http.post<IUser>('http://api.mano/api/registration.php',
     {
       'username': this.userInput.USERNAME,
       'firstname': this.userInput.FIRST_NAME,
