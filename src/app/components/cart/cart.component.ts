@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IBook } from '../../models/book.model';
+import { ICart } from '../../models/cart.model';
 
 @Component({
   selector: 'app-cart',
@@ -9,17 +9,15 @@ import { IBook } from '../../models/book.model';
 })
 export class CartComponent implements OnInit {
 
-  public myBooks: IBook[];
+  public myBooks: ICart[];
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    /*
-    this.http.get<IBook[]>('http://api.mano/api/carrello.php')
+    this.http.get<ICart[]>('http://api.mano/api/carrello.php')
     .subscribe(data => {
       this.myBooks = data;
     });
-    */
   }
 
   RemoveItem(id: number, qty: number) {
