@@ -69,11 +69,13 @@
                 [(ngModel)]="userInput.MAIL"
                 required
                 maxlength="64"
+                appValidate="^.+\@.+\..{2,}$"
                 #MAIL="ngModel"
             />
             <div *ngIf="!(MAIL.valid || MAIL.pristine)" class="alert alert-danger">
               <div *ngIf="MAIL.errors.required">Il campo è obbligatorio</div>
               <div *ngIf="MAIL.errors.maxlength">Il campo deve essere massimo di 64 caratteri</div>
+              <div *ngIf="MAIL.errors.appValidate">La mail inserita non è corretta</div>
             </div>
       
             <label for="PHONE">Phone</label>

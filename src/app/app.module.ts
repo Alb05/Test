@@ -7,8 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { ValidateDirective } from './directives/validate.directive';
 
 
 @NgModule({
@@ -16,8 +16,8 @@ import { RegistrationComponent } from './components/registration/registration.co
     AppComponent,
     HomeComponent,
     LoginComponent,
-    NavbarComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ValidateDirective
   ],
   imports: [
     BrowserModule,
