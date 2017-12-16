@@ -1,6 +1,5 @@
-<div class="col-6 offset-6">
-    <h1>Login</h1>
-    <p>Non sei registrato? <a class="btn btn-primary" [routerLink]="['/registration']">Registrati</a></p>
+<div class="col-sm-4 col-sm-offset-4">
+    <h3>Login</h3>
     <form (ngSubmit)="OnSubmit()" #userForm="ngForm">
         <div class="form-group">
             <label for="USERNAME">Username</label>
@@ -30,7 +29,8 @@
             <div *ngIf="!(PASSWORD.valid || PASSWORD.pristine)" class="alert alert-danger">
                 <div *ngIf="PASSWORD.errors.required">Il campo è obbligatorio</div>
             </div>
-            <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Submit</button>
+            <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Login</button>
+            <a class="btn btn-primary" [routerLink]="['/registration']">Registrati</a>
         </div>
     </form>
 </div>

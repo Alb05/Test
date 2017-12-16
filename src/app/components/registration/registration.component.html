@@ -1,5 +1,5 @@
-<h1>Registration</h1>
-<div class="col">
+<div class="col-sm-6 col-sm-offset-3">
+    <h3>Registration</h3>
     <form (ngSubmit)="OnSubmit()" #userForm="ngForm">
         <div class="form-group">
             <label for="USERNAME">Username</label>
@@ -153,6 +153,7 @@
               <div *ngIf="COUNTRY.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
             </div>
             <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Submit</button>
+            <a class="btn btn-primary" [routerLink]="['/login']">Torna alla login</a>
         </div>
       </form>
 </div>

@@ -1,13 +1,34 @@
-<div class='col-sm-3'>
-    <div class="form-group" *ngIf="categories">
-        <label for="catSelect">Select Category</label>
-        <select class="form-control" id="catSelect">
-            <option *ngFor="let category of categories" value="{{ category.CATEGORY_ID }}">{{ category.CATEGORY_NAME }}</option>
-        </select>
-    </div> 
-</div>
-<div class='col-sm-9 body-content'>
-    <p *ngIf="!books"><em>Loading...</em></p>
+<div class='col-sm-12'>
+    <div class='row'>
+        <div class="col-sm-3">
+            <h1>Di Mano In Mano</h1>
+        </div>
+        <div class='col-sm-2 col-sm-offset-5'>
+            <div *ngIf="categories">
+                <form (ngSubmit)="CategoryFilter()" #categoryForm="ngForm">
+                    <div class="form-group">
+                        <label for="CATEGORY_ID">Categoria</label>
+                        <select
+                            id="CATEGORY_ID"
+                            name="CATEGORY_ID"
+                            class="form-control"
+                            [(ngModel)]="inputCat.CATEGORY_ID"
+                            #CATEGORY_ID="ngModel"
+                        >
+                            <option value="0">All</option>
+                            <option *ngFor="let category of categories" value="{{ category.CATEGORY_ID }}">{{ category.CATEGORY_NAME }}</option>
+                        </select>
+                        <button type="submit" class="btn btn-success">Filtra</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <a class="btn btn-primary" [routerLink]="['/cart']">Vai al carrello</a>
+            <a class="btn btn-danger" [routerLink]="['/logout']">Logout</a>
+        </div>
+    </div>
+    <p *ngIf="!books"><em>Loading books...</em></p>
 
     <table class='table' *ngIf="books">
         <thead>
@@ -35,7 +56,16 @@
                 <td>{{ book.PUB_DATE }}</td>
                 <td>{{ book.PRICE }} €</td>
                 <td>{{ book.QUANTITY }}</td>
-                <td>Aggiungi</td>
+                <td>
+                    <input
+                        name="qty"
+                        type="number"
+                        max="{{ book.QUANTITY }}"
+                        value="1"
+                        #qty
+                    />
+                    <button class="btn btn-success" (click)="AddToCart(book.BOOK_ID, qty.value)">Aggiungi</button>
+                </td>
             </tr>
         </tbody>
     </table>

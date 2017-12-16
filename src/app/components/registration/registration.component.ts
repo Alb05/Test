@@ -46,7 +46,7 @@ export class RegistrationComponent {
       'password': this.userInput.PASSWORD
     })
     .subscribe(data => {
-      data;
+      console.log(data);
     });
   }
 }
