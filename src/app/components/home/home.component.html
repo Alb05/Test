@@ -1,53 +1,59 @@
 <div class='col-sm-12'>
     <div class='row'>
-        <div class="col-sm-3">
-            <h1>Di Mano In Mano</h1>
-        </div>
-        <div class="col-sm-2 col-sm-offset-3">
-            <form (ngSubmit)="SearchTitle()" #searchForm="ngForm">
-                <div class="form-group">
-                    <label for="TITLE">Titolo</label>
-                    <input
-                        id="TITLE"
-                        name="TITLE"
-                        class="form-control"
-                        [(ngModel)]="inputBook.TITLE"
-                        #TITLE="ngModel"
-                        required
-                        maxlength="255"
-                    />
-                    <button type="submit" [disabled]="!searchForm.form.valid" class="btn btn-success">Cerca</button>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-home" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" [routerLink]="['/home']">Di Mano In Mano</a>
                 </div>
-            </form>
-        </div>
-        <div class='col-sm-2'>
-            <div *ngIf="categories">
-                <form (ngSubmit)="CategoryFilter()" #categoryForm="ngForm">
-                    <div class="form-group">
-                        <label for="CATEGORY_ID">Categoria</label>
-                        <select
-                            id="CATEGORY_ID"
-                            name="CATEGORY_ID"
-                            class="form-control"
-                            [(ngModel)]="inputCat.CATEGORY_ID"
-                            #CATEGORY_ID="ngModel"
-                        >
-                            <option value="0">All</option>
-                            <option *ngFor="let category of categories" value="{{ category.CATEGORY_ID }}">{{ category.CATEGORY_NAME }}</option>
-                        </select>
-                        <button type="submit" class="btn btn-success">Filtra</button>
-                    </div>
-                </form>
+                <div class="collapse navbar-collapse" id="navbar-home">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a [routerLink]="['/cart']">Vai al carrello</a></li>
+                        <li><a (click)="Logout()">Logout</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right" role="search" (ngSubmit)="SearchTitle()" #searchForm="ngForm">
+                        <div class="form-group">
+                            <input
+                                id="TITLE"
+                                name="TITLE"
+                                class="form-control"
+                                [(ngModel)]="inputBook.TITLE"
+                                #TITLE="ngModel"
+                                required
+                                maxlength="255"
+                                placeholder="Title"
+                            />
+                        </div>
+                        <button type="submit" [disabled]="!searchForm.form.valid" class="btn btn-default">Cerca</button>
+                    </form>
+                    <form *ngIf="categories" class="navbar-form navbar-right" role="filter" (ngSubmit)="CategoryFilter()" #categoryForm="ngForm">
+                        <div class="form-group">
+                            <label for="CATEGORY_ID">Categoria</label>
+                            <select
+                                id="CATEGORY_ID"
+                                name="CATEGORY_ID"
+                                class="form-control"
+                                [(ngModel)]="inputCat.CATEGORY_ID"
+                                #CATEGORY_ID="ngModel"
+                            >
+                                <option value="0">All</option>
+                                <option *ngFor="let category of categories" value="{{ category.CATEGORY_ID }}">{{ category.CATEGORY_NAME }}</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-default">Filtra</button>
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-2">
-            <a class="btn btn-primary" [routerLink]="['/cart']">Vai al carrello</a>
-            <a class="btn btn-danger" (click)="Logout()">Logout</a>
-        </div>
+        </nav>
     </div>
     <div class='row'>
         <div class='col-sm-12'>
-            <p *ngIf="!books"><em>Loading books...</em></p>
+            <p *ngIf="!books" id="loading-books"><em>Loading books...</em></p>
 
             <table class='table' *ngIf="books">
                 <thead>
@@ -76,21 +82,31 @@
                         <td>{{ book.PRICE }} €</td>
                         <td>{{ book.QUANTITY }}</td>
                         <td>
-                            <input
-                                name="bookid"
-                                type="hidden"
-                                value="{{ book.BOOK_ID }}"
-                                #bookid
-                            />
-                            <input
-                                name="qty"
-                                type="number"
-                                max="{{ book.QUANTITY }}"
-                                value="1"
-                                min="1"
-                                #qty
-                            />
-                            <button class="btn btn-success" (click)="AddToCart(bookid.value, qty.value)">Aggiungi</button>
+                            <div class="row">
+                                <div class="col-12">
+                                    <input
+                                        name="bookid"
+                                        class="form-control"
+                                        type="hidden"
+                                        value="{{ book.BOOK_ID }}"
+                                        #bookid
+                                    />
+                                    <div class="input-group">
+                                        <input
+                                            name="qty"
+                                            type="number"
+                                            class="form-control"
+                                            max="{{ book.QUANTITY }}"
+                                            value="1"
+                                            min="1"
+                                            #qty
+                                        />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-success" (click)="AddToCart(bookid.value, qty.value)">Aggiungi</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
