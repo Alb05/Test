@@ -79,6 +79,8 @@ export class HomeComponent implements OnInit{
     .subscribe(data=> {
       if (data) {
         this.router.navigate(['cart']);
+      } else {
+        alert("C'è stato un errore nell'aggiunta dell'articolo");
       }
     });
   }
@@ -87,6 +89,8 @@ export class HomeComponent implements OnInit{
     this.http.get<boolean>('http://api.mano/api/logout.php').subscribe(data=> {
       if (data) {
         this.router.navigate(['login']);
+      } else {
+        alert("C'è stato un errore nel logout");
       }
     });
   }

@@ -45,6 +45,8 @@ export class LoginComponent {
     .subscribe(data => {
       if (data) {
         this.router.navigate(['home'])
+      } else {
+        alert("l'username e/o la password sono errati");
       }
     });
   }

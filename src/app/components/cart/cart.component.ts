@@ -31,7 +31,9 @@ export class CartComponent implements OnInit {
   ModifyQty(id: number, qty: number) {
     this.http.post<boolean>('http://api.mano/api/carrello.php', { 'method': 'modify', 'bookid': id, 'bookqty': qty })
     .subscribe(data => {
-      console.log(data);
+      if (!data) {
+        alert("c'è stato un problema con la modifica della quantità");
+      }
     });
 
     this.http.get<ICart[]>('http://api.mano/api/carrello.php')
@@ -43,7 +45,9 @@ export class CartComponent implements OnInit {
   RemoveItem(id: number) {
     this.http.post<boolean>('http://api.mano/api/carrello.php', { 'method': 'remove', 'bookid': id })
     .subscribe(data => {
-      console.log(data);
+      if (!data) {
+        alert("c'è stato un problema con la rimozione dell'oggetto");
+      }
     });
 
     this.http.get<ICart[]>('http://api.mano/api/carrello.php')
@@ -56,6 +60,8 @@ export class CartComponent implements OnInit {
     this.http.get<boolean>('http://api.mano/api/logout.php').subscribe(data=> {
       if (data) {
         this.router.navigate(['login']);
+      } else {
+        alert("C'è stato un errore nel logout");
       }
     });
   }
@@ -63,7 +69,12 @@ export class CartComponent implements OnInit {
   Order() {
     this.http.get<boolean>('http://api.mano/api/ordina.php')
     .subscribe(data => {
-      console.log(data);
+      if (data) {
+        alert('Ordine effettuato');
+        this.router.navigate(['home']);
+      } else {
+        alert("C'e stato un problema con l'esecuzione dell'ordine");
+      }
     });
   }
 }

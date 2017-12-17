@@ -49,7 +49,10 @@ export class RegistrationComponent {
     })
     .subscribe(data => {
       if (data) {
+        alert("Registrazione effettuata con successo");
         this.router.navigate(['login']);
+      } else {
+        alert("C'è stato un errore nella registrazione");
       }
     });
   }
