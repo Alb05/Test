@@ -70,7 +70,7 @@ export class CartComponent implements OnInit {
     this.http.get<boolean>('http://api.mano/api/ordina.php')
     .subscribe(data => {
       if (data) {
-        alert('Ordine effettuato');
+        alert('Ordine effettuato con successo!');
         this.router.navigate(['home']);
       } else {
         alert("C'e stato un problema con l'esecuzione dell'ordine");
