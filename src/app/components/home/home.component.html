@@ -3,7 +3,24 @@
         <div class="col-sm-3">
             <h1>Di Mano In Mano</h1>
         </div>
-        <div class='col-sm-2 col-sm-offset-5'>
+        <div class="col-sm-2 col-sm-offset-3">
+            <form (ngSubmit)="SearchTitle()" #searchForm="ngForm">
+                <div class="form-group">
+                    <label for="TITLE">Titolo</label>
+                    <input
+                        id="TITLE"
+                        name="TITLE"
+                        class="form-control"
+                        [(ngModel)]="inputBook.TITLE"
+                        #TITLE="ngModel"
+                        required
+                        maxlength="255"
+                    />
+                    <button type="submit" [disabled]="!searchForm.form.valid" class="btn btn-success">Cerca</button>
+                </div>
+            </form>
+        </div>
+        <div class='col-sm-2'>
             <div *ngIf="categories">
                 <form (ngSubmit)="CategoryFilter()" #categoryForm="ngForm">
                     <div class="form-group">
@@ -70,6 +87,7 @@
                                 type="number"
                                 max="{{ book.QUANTITY }}"
                                 value="1"
+                                min="1"
                                 #qty
                             />
                             <button class="btn btn-success" (click)="AddToCart(bookid.value, qty.value)">Aggiungi</button>

@@ -54,6 +54,13 @@ export class HomeComponent implements OnInit{
     });
   }
 
+  SearchTitle() {
+    this.http.get<IBook[]>(`http://api.mano/api/elenco.php?title=${this.inputBook.TITLE}`)
+    .subscribe(data => {
+      this.books = data;
+    });
+  }
+
   CategoryFilter() {
     this.http.get<IBook[]>(`http://api.mano/api/elenco.php?category=${this.inputCat.CATEGORY_ID}`)
     .subscribe(data => {
@@ -62,7 +69,7 @@ export class HomeComponent implements OnInit{
   }
 
   AddToCart(id: number, qty: number) {
-    this.http.post<boolean>('http://api.mano/api/carrello.php', { 'bookid': id, 'bookqty': qty })
+    this.http.post<boolean>('http://api.mano/api/carrello.php', { 'method': 'add', 'bookid': id, 'bookqty': qty })
     .subscribe(data=> {
       console.log(data);
     });

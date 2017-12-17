@@ -39,7 +39,7 @@ export class LoginComponent {
   }
 
   OnSubmit() {
-    this.http.post<boolean>('http://api.mano/api/login.php', { 'username': this.userInput.USERNAME, 'password': this.userInput.PASSWORD })
+    this.http.post<boolean>('http://api.mano/api/login.php', { 'mail': this.userInput.MAIL, 'password': this.userInput.PASSWORD })
     .subscribe(data => {
       console.log(data);
     });

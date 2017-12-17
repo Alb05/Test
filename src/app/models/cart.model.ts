@@ -3,5 +3,6 @@ export interface ICart {
   TITLE: string,
   DESCRIPTION: string
   PRICE: number,
-  QUANTITY: number
+  QUANTITY: number,
+  ORD_QTY: number
 }

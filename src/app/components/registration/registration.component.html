@@ -25,10 +25,27 @@
                 type="password"
                 [(ngModel)]="userInput.PASSWORD"
                 required
+                minlength="8"
                 #PASSWORD="ngModel"
             />
             <div *ngIf="!(PASSWORD.valid || PASSWORD.pristine)" class="alert alert-danger">
               <div *ngIf="PASSWORD.errors.required">Il campo è obbligatorio</div>
+              <div *ngIf="PASSWORD.errors.minlength">la password deve essere di almeno 8 caratteri</div>
+            </div>
+
+            <label for="confpwd">Conferma Password</label>
+            <input
+                id="confpwd"
+                name="confpwd"
+                class="form-control"
+                type="password"
+                required
+                appPassword="PASSWORD.value"
+                #confpwd
+            />
+            <div *ngIf="!(confpwd.valid || confpwd.pristine)" class="alert alert-danger">
+                <div *ngIf="confpwd.errors.required">Il campo è obbligatorio</div>
+                <div *ngIf="confpwd.errors.appPassword">Le password non coincidono</div>
             </div>
       
             <label for="FIRST_NAME">First Name</label>

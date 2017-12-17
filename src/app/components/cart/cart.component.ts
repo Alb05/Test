@@ -20,10 +20,27 @@ export class CartComponent implements OnInit {
     });
   }
 
-  RemoveItem(id: number, qty: number) {
-    this.http.post<boolean>('http://api.mano/api/rimuovi.php', { 'bookid': id, 'bookqty': qty })
+  ModifyQty(id: number, qty: number) {
+    this.http.post<boolean>('http://api.mano/api/carrello.php', { 'method': 'modify', 'bookid': id, 'bookqty': qty })
     .subscribe(data => {
       console.log(data);
+    });
+
+    this.http.get<ICart[]>('http://api.mano/api/carrello.php')
+    .subscribe(data => {
+      this.myBooks = data;
+    });
+  }
+
+  RemoveItem(id: number) {
+    this.http.post<boolean>('http://api.mano/api/carrello.php', { 'method': 'remove', 'bookid': id })
+    .subscribe(data => {
+      console.log(data);
+    });
+
+    this.http.get<ICart[]>('http://api.mano/api/carrello.php')
+    .subscribe(data => {
+      this.myBooks = data;
     });
   }
 

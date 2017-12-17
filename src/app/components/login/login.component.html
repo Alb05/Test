@@ -2,19 +2,21 @@
     <h3>Login</h3>
     <form (ngSubmit)="OnSubmit()" #userForm="ngForm">
         <div class="form-group">
-            <label for="USERNAME">Username</label>
+            <label for="MAIL">Mail</label>
             <input
-                id="USERNAME"
-                name="USERNAME"
+                id="MAIL"
+                name="MAIL"
                 class="form-control"
-                [(ngModel)]="userInput.USERNAME"
+                [(ngModel)]="userInput.MAIL"
                 required
-                maxlength="32"
-                #USERNAME="ngModel"
+                maxlength="64"
+                appValidate="^.+\@.+\..{2,}$"
+                #MAIL="ngModel"
             />
-            <div *ngIf="!(USERNAME.valid || USERNAME.pristine)" class="alert alert-danger">
-                <div *ngIf="USERNAME.errors.required">Il campo è obbligatorio</div>
-                <div *ngIf="USERNAME.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
+            <div *ngIf="!(MAIL.valid || MAIL.pristine)" class="alert alert-danger">
+                <div *ngIf="MAIL.errors.required">Il campo è obbligatorio</div>
+                <div *ngIf="MAIL.errors.maxlength">Il campo deve essere massimo di 64 caratteri</div>
+                <div *ngIf="MAIL.errors.appValidate">La mail inserita non è corretta</div>
             </div>
             <label for="PASSWORD">Password</label>
             <input
@@ -24,10 +26,12 @@
                 type="password"
                 [(ngModel)]="userInput.PASSWORD"
                 required
+                minlength="8"
                 #PASSWORD="ngModel"
             />
             <div *ngIf="!(PASSWORD.valid || PASSWORD.pristine)" class="alert alert-danger">
                 <div *ngIf="PASSWORD.errors.required">Il campo è obbligatorio</div>
+                <div *ngIf="PASSWORD.errors.minlength">La password deve essere di almeno 8 caratteri</div>
             </div>
             <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Login</button>
             <a class="btn btn-primary" [routerLink]="['/registration']">Registrati</a>

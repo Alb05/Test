@@ -26,8 +26,8 @@
                     <tr *ngFor="let book of myBooks">
                       <td>{{ book.TITLE }}</td>
                       <td>{{ book.DESCRIPTION }}</td>
-                      <td>{{ book.QUANTITY }}</td>
-                      <td>{{ book.PRICE * book.QUANTITY }}</td>
+                      <td>{{ book.ORD_QTY }}</td>
+                      <td>{{ book.PRICE * book.ORD_QTY }}</td>
                       <td>
                           <input
                             name="rmBookId"
@@ -40,9 +40,11 @@
                             type="number"
                             max="{{ book.QUANTITY }}"
                             value="1"
+                            min="1"
                             #rmQty
                           />
-                          <button class="btn btn-danger" (click)="RemoveItem(rmBookId.value, rmQty.value)">Rimuovi</button>
+                          <button class="btn btn-success" (click)="ModifyQty(rmBookId.value, rmQty.value)">Modifica Quantità</button>
+                          <button class="btn btn-danger" (click)="RemoveItem(rmBookId.value)">Rimuovi</button>
                       </td>
                     </tr>
                 </tbody>
