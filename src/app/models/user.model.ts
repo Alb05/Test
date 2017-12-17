@@ -11,6 +11,7 @@ export interface IUser {
   COUNTRY: string,
   SALT: string,
   PASSWORD: string,
+  CHECK_PWD: string,
   CREATED_AT: Date,
   UPDATED_AT: Date,
   DELETED_AT: Date,

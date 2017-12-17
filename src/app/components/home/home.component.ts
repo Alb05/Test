@@ -3,6 +3,7 @@ import { IBook } from '../../models/book.model';
 import { HttpClient } from '@angular/common/http';
 import { ICategory } from '../../models/category.model';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit{
   @ViewChild("cartForm")
   cartForm: NgForm;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.inputCat = {
       CATEGORY_ID: 0,
       CATEGORY_NAME: 'All'
@@ -43,6 +44,11 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.http.get<boolean>('http://api.mano/api/sesstat.php')
+    .subscribe(data => {
+      console.log(data);
+    });
+
     this.http.get<IBook[]>('http://api.mano/api/elenco.php')
     .subscribe(data => {
       this.books = data;
@@ -71,13 +77,17 @@ export class HomeComponent implements OnInit{
   AddToCart(id: number, qty: number) {
     this.http.post<boolean>('http://api.mano/api/carrello.php', { 'method': 'add', 'bookid': id, 'bookqty': qty })
     .subscribe(data=> {
-      console.log(data);
+      if (data) {
+        this.router.navigate(['cart']);
+      }
     });
   }
 
   Logout() {
     this.http.get<boolean>('http://api.mano/api/logout.php').subscribe(data=> {
-      console.log(data);
+      if (data) {
+        this.router.navigate(['login']);
+      }
     });
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IUser } from '../../models/user.model';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -10,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class RegistrationComponent {
   public userInput: IUser;
   
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.userInput = {
       USER_ID: null,
       USERNAME: null,
@@ -24,6 +25,7 @@ export class RegistrationComponent {
       COUNTRY: null,
       SALT: null,
       PASSWORD: null,
+      CHECK_PWD: null,
       CREATED_AT: null,
       UPDATED_AT: null,
       DELETED_AT: null,
@@ -32,7 +34,7 @@ export class RegistrationComponent {
     };
   }
   OnSubmit() {
-    this.http.post<IUser>('http://api.mano/api/registration.php',
+    this.http.post<boolean>('http://api.mano/api/registration.php',
     {
       'username': this.userInput.USERNAME,
       'firstname': this.userInput.FIRST_NAME,
@@ -46,7 +48,9 @@ export class RegistrationComponent {
       'password': this.userInput.PASSWORD
     })
     .subscribe(data => {
-      console.log(data);
+      if (data) {
+        this.router.navigate(['login']);
+      }
     });
   }
 }

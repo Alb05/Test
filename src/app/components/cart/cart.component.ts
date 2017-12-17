@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ICart } from '../../models/cart.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -11,9 +12,16 @@ export class CartComponent implements OnInit {
 
   public myBooks: ICart[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
+    this.http.get<boolean>('http://api.mano/api/sesstat.php')
+    .subscribe(data => {
+      if (!data) {
+        this.router.navigate(['login']);
+      }
+    });
+
     this.http.get<ICart[]>('http://api.mano/api/carrello.php')
     .subscribe(data => {
       this.myBooks = data;
@@ -46,7 +54,9 @@ export class CartComponent implements OnInit {
 
   Logout() {
     this.http.get<boolean>('http://api.mano/api/logout.php').subscribe(data=> {
-      console.log(data);
+      if (data) {
+        this.router.navigate(['login']);
+      }
     });
   }
 
