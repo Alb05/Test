@@ -63,10 +63,17 @@ export class HomeComponent implements OnInit{
   }
 
   SearchTitle() {
-    this.http.get<IBook[]>(`http://api.mano/api/elenco.php?title=${this.inputBook.TITLE}`)
-    .subscribe(data => {
-      this.books = data;
-    });
+    if (this.inputCat.CATEGORY_ID != null && this.inputCat.CATEGORY_ID > 0) {
+      this.http.get<IBook[]>(`http://api.mano/api/elenco.php?title=${this.inputBook.TITLE}&category=${this.inputCat.CATEGORY_ID}`)
+      .subscribe(data => {
+        this.books = data;
+      });
+    } else {
+      this.http.get<IBook[]>(`http://api.mano/api/elenco.php?title=${this.inputBook.TITLE}`)
+      .subscribe(data => {
+        this.books = data;
+      });
+    }
   }
 
   CategoryFilter() {
