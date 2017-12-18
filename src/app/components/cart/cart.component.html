@@ -12,6 +12,7 @@
                     <a class="navbar-brand" [routerLink]="['/home']">Di Mano In Mano</a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-cart">
+                    <p class="navbar-text">Carrello</p>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a [routerLink]="['/home']">Torna al negozio</a></li>
                         <li><a *ngIf="myBooks" (click)="Order()">Ordina</a></li>
@@ -56,7 +57,7 @@
                                         type="number"
                                         class="form-control"
                                         max="{{ book.QUANTITY }}"
-                                        value="1"
+                                        value="{{ book.ORD_QTY }}"
                                         min="1"
                                         #rmQty
                                     />
