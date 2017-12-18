@@ -46,7 +46,9 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
     this.http.get<boolean>('http://api.mano/api/sesstat.php')
     .subscribe(data => {
-      console.log(data);
+      if (!data) {
+        this.router.navigate(['login']);
+      }
     });
 
     this.http.get<IBook[]>('http://api.mano/api/elenco.php')
@@ -80,7 +82,7 @@ export class HomeComponent implements OnInit{
       if (data) {
         this.router.navigate(['cart']);
       } else {
-        alert("C'è stato un errore nell'aggiunta dell'articolo");
+        alert("Non è possibile inserire l'articolo");
       }
     });
   }

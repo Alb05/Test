@@ -32,7 +32,7 @@ export class CartComponent implements OnInit {
     this.http.post<boolean>('http://api.mano/api/carrello.php', { 'method': 'modify', 'bookid': id, 'bookqty': qty })
     .subscribe(data => {
       if (!data) {
-        alert("c'è stato un problema con la modifica della quantità");
+        alert("La modifica non è possibile");
       }
     });
 
