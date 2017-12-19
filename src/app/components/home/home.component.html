@@ -12,9 +12,10 @@
                     <a class="navbar-brand" [routerLink]="['/home']">Di Mano In Mano</a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-home">
+                    <p class="navbar-text"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Shop</p>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a [routerLink]="['/cart']">Vai al carrello</a></li>
-                        <li><a (click)="Logout()">Logout</a></li>
+                        <li><a [routerLink]="['/cart']"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Vai al carrello</a></li>
+                        <li><a (click)="Logout()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Logout</a></li>
                     </ul>
                     <form class="navbar-form navbar-right" role="search" (ngSubmit)="SearchTitle()" #searchForm="ngForm">
                         <div class="form-group">
