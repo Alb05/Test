@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { IUser } from '../../models/user.model';
 import { NgForm } from "@angular/forms";
 import { Router } from '@angular/router';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   public user: IUser;
   public userInput: IUser;
@@ -38,6 +39,15 @@ export class LoginComponent {
       DELETED: null,
       GROUP_ID: null
     };
+  }
+
+  ngOnInit(): void {
+    this.http.get<boolean>('http://api.mano/api/sesstat.php')
+    .subscribe(data => {
+      if (data) {
+        this.router.navigate(['home']);
+      }
+    });
   }
 
   OnSubmit() {
