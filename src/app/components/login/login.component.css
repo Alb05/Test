@@ -1,5 +1,5 @@
 .btn {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 label {
@@ -9,8 +9,18 @@ label {
 h1 {
   margin-top: 12rem;
   text-align: center;
+  margin-bottom: 4rem;
 }
 
 form {
-  margin-top: 5rem;
+  padding: 3rem 7rem 5rem;
+  /* background:rgb(230, 229, 224); */
+  background:rgb(241, 241, 241);
+  border-radius: 15px;
+  border: solid 2px rgb(223, 223, 223);
+}
+
+h3{
+  text-align: center;
+  margin-bottom: 2rem;
 }
