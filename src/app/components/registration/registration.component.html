@@ -1,177 +1,229 @@
-<div class="col-sm-6 col-sm-offset-3">
-    <h3>Registration</h3>
-    <form (ngSubmit)="OnSubmit()" #userForm="ngForm">
-        <div class="form-group">
-            <label for="USERNAME">Username</label>
-            <input
-                id="USERNAME"
-                name="USERNAME"
-                class="form-control"
-                [(ngModel)]="userInput.USERNAME"
-                required
-                maxlength="32"
-                #USERNAME="ngModel"
-            />
-            <div *ngIf="!(USERNAME.valid || USERNAME.pristine)" class="alert alert-danger">
-              <div *ngIf="USERNAME.errors.required">Il campo è obbligatorio</div>
-              <div *ngIf="USERNAME.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
-            </div>
-      
-            <label for="PASSWORD">Password</label>
-            <input
-                id="PASSWORD"
-                name="PASSWORD"
-                class="form-control"
-                type="password"
-                [(ngModel)]="userInput.PASSWORD"
-                required
-                minlength="8"
-                #PASSWORD="ngModel"
-            />
-            <div *ngIf="!(PASSWORD.valid || PASSWORD.pristine)" class="alert alert-danger">
-              <div *ngIf="PASSWORD.errors.required">Il campo è obbligatorio</div>
-              <div *ngIf="PASSWORD.errors.minlength">la password deve essere di almeno 8 caratteri</div>
-            </div>
 
-            <label for="CHECK_PWD">Conferma Password</label>
-            <input
-                id="CHECK_PWD"
-                name="CHECK_PWD"
-                class="form-control"
-                type="password"
-                [(ngModel)]="userInput.CHECK_PWD"
-                required
-                validateEqual="PASSWORD"
-                #CHECK_PWD="ngModel"
-            />
-            <div *ngIf="!(CHECK_PWD.valid || CHECK_PWD.pristine)" class="alert alert-danger">
-                <div *ngIf="CHECK_PWD.errors.required">Il campo è obbligatorio</div>
-                <div *ngIf="CHECK_PWD.errors.validateEqual">Le password non coincidono</div>
+<div class="row">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-registration" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">Di Mano In Mano</a>
             </div>
-      
-            <label for="FIRST_NAME">First Name</label>
-            <input
-                id="FIRST_NAME"
-                name="FIRST_NAME"
-                class="form-control"
-                [(ngModel)]="userInput.FIRST_NAME"
-                required
-                maxlength="32"
-                #FIRST_NAME="ngModel"
-            />
-            <div *ngIf="!(FIRST_NAME.valid || FIRST_NAME.pristine)" class="alert alert-danger">
-              <div *ngIf="FIRST_NAME.errors.required">Il campo è obbligatorio</div>
-              <div *ngIf="FIRST_NAME.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
+            <div class="collapse navbar-collapse navbar-right" id="navbar-registration">
+                <h4 class="navbar-text">Registration</h4>
             </div>
-      
-            <label for="LAST_NAME">Last Name</label>
-            <input
-                id="LAST_NAME"
-                name="LAST_NAME"
-                class="form-control"
-                [(ngModel)]="userInput.LAST_NAME"
-                required
-                maxlength="32"
-                #LAST_NAME="ngModel"
-            />
-            <div *ngIf="!(LAST_NAME.valid || LAST_NAME.pristine)" class="alert alert-danger">
-              <div *ngIf="LAST_NAME.errors.required">Il campo è obbligatorio</div>
-              <div *ngIf="LAST_NAME.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
-            </div>
-      
-            <label for="MAIL">Mail</label>
-            <input
-                id="MAIL"
-                name="MAIL"
-                class="form-control"
-                [(ngModel)]="userInput.MAIL"
-                required
-                maxlength="64"
-                appValidate="^.+\@.+\..{2,}$"
-                #MAIL="ngModel"
-            />
-            <div *ngIf="!(MAIL.valid || MAIL.pristine)" class="alert alert-danger">
-              <div *ngIf="MAIL.errors.required">Il campo è obbligatorio</div>
-              <div *ngIf="MAIL.errors.maxlength">Il campo deve essere massimo di 64 caratteri</div>
-              <div *ngIf="MAIL.errors.appValidate">La mail inserita non è corretta</div>
-            </div>
-      
-            <label for="PHONE">Phone</label>
-            <input
-                id="PHONE"
-                name="PHONE"
-                class="form-control"
-                [(ngModel)]="userInput.PHONE"
-                required
-                maxlength="32"
-                #PHONE="ngModel"
-            />
-            <div *ngIf="!(PHONE.valid || PHONE.pristine)" class="alert alert-danger">
-              <div *ngIf="PHONE.errors.required">Il campo è obbligatorio</div>
-              <div *ngIf="PHONE.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
-            </div>
-      
-            <label for="ADDRESS">Address</label>
-            <input
-                id="ADDRESS"
-                name="ADDRESS"
-                class="form-control"
-                [(ngModel)]="userInput.ADDRESS"
-                required
-                maxlength="64"
-                #ADDRESS="ngModel"
-            />
-            <div *ngIf="!(ADDRESS.valid || ADDRESS.pristine)" class="alert alert-danger">
-              <div *ngIf="ADDRESS.errors.required">Il campo è obbligatorio</div>
-              <div *ngIf="ADDRESS.errors.maxlength">Il campo deve essere massimo di 64 caratteri</div>
-            </div>
-      
-            <label for="CITY">City</label>
-            <input
-                id="CITY"
-                name="CITY"
-                class="form-control"
-                [(ngModel)]="userInput.CITY"
-                required
-                maxlength="32"
-                #CITY="ngModel"
-            />
-            <div *ngIf="!(CITY.valid || CITY.pristine)" class="alert alert-danger">
-              <div *ngIf="CITY.errors.required">Il campo è obbligatorio</div>
-              <div *ngIf="CITY.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
-            </div>
-      
-            <label for="POSTAL_CODE">Postal Code</label>
-            <input
-                id="POSTAL_CODE"
-                name="POSTAL_CODE"
-                class="form-control"
-                [(ngModel)]="userInput.POSTAL_CODE"
-                required
-                maxlength="16"
-                #POSTAL_CODE="ngModel"
-            />
-            <div *ngIf="!(POSTAL_CODE.valid || POSTAL_CODE.pristine)" class="alert alert-danger">
-              <div *ngIf="POSTAL_CODE.errors.required">Il campo è obbligatorio</div>
-              <div *ngIf="POSTAL_CODE.errors.maxlength">Il campo deve essere massimo di 16 caratteri</div>
-            </div>
-      
-            <label for="COUNTRY">Country</label>
-            <input
-                id="COUNTRY"
-                name="COUNTRY"
-                class="form-control"
-                [(ngModel)]="userInput.COUNTRY"
-                required
-                maxlength="32"
-                #COUNTRY="ngModel"
-            />
-            <div *ngIf="!(COUNTRY.valid || COUNTRY.pristine)" class="alert alert-danger">
-              <div *ngIf="COUNTRY.errors.required">Il campo è obbligatorio</div>
-              <div *ngIf="COUNTRY.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
-            </div>
-            <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Submit</button>
-            <a class="btn btn-primary" [routerLink]="['/login']">Torna alla login</a>
         </div>
-      </form>
+    </nav>
 </div>
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+            <form (ngSubmit)="OnSubmit()" #userForm="ngForm">
+                <div class="form-group">
+        
+                    <div class="row">
+                        <div class="col-sm-6">
+                                <label for="USERNAME">Username</label>
+                                <input
+                                    id="USERNAME"
+                                    name="USERNAME"
+                                    class="form-control"
+                                    [(ngModel)]="userInput.USERNAME"
+                                    required
+                                    maxlength="32"
+                                    #USERNAME="ngModel"
+                                />
+                                <div *ngIf="!(USERNAME.valid || USERNAME.pristine)" class="alert alert-danger">
+                                    <div *ngIf="USERNAME.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="USERNAME.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
+                                </div>
+                        </div>
+                        <div class="col-sm-6">
+                                <label for="MAIL">Mail</label>
+                                <input
+                                    id="MAIL"
+                                    name="MAIL"
+                                    class="form-control"
+                                    [(ngModel)]="userInput.MAIL"
+                                    required
+                                    maxlength="64"
+                                    appValidate="^.+\@.+\..{2,}$"
+                                    #MAIL="ngModel"
+                                />
+                                <div *ngIf="!(MAIL.valid || MAIL.pristine)" class="alert alert-danger">
+                                    <div *ngIf="MAIL.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="MAIL.errors.maxlength">Il campo deve essere massimo di 64 caratteri</div>
+                                    <div *ngIf="MAIL.errors.appValidate">La mail inserita non è corretta</div>
+                                </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                                <label for="PASSWORD">Password</label>
+                                <input
+                                    id="PASSWORD"
+                                    name="PASSWORD"
+                                    class="form-control"
+                                    type="password"
+                                    [(ngModel)]="userInput.PASSWORD"
+                                    required
+                                    minlength="8"
+                                    #PASSWORD="ngModel"
+                                />
+                                <div *ngIf="!(PASSWORD.valid || PASSWORD.pristine)" class="alert alert-danger">
+                                    <div *ngIf="PASSWORD.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="PASSWORD.errors.minlength">la password deve essere di almeno 8 caratteri</div>
+                                </div>
+                        </div>
+                        <div class="col-sm-6">
+                                <label for="CHECK_PWD">Conferma Password</label>
+                                <input
+                                    id="CHECK_PWD"
+                                    name="CHECK_PWD"
+                                    class="form-control"
+                                    type="password"
+                                    [(ngModel)]="userInput.CHECK_PWD"
+                                    required
+                                    validateEqual="PASSWORD"
+                                    #CHECK_PWD="ngModel"
+                                />
+                                <div *ngIf="!(CHECK_PWD.valid || CHECK_PWD.pristine)" class="alert alert-danger">
+                                    <div *ngIf="CHECK_PWD.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="CHECK_PWD.errors.validateEqual">Le password non coincidono</div>
+                                </div>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col-sm-6">
+                                <label for="FIRST_NAME">First Name</label>
+                                <input
+                                    id="FIRST_NAME"
+                                    name="FIRST_NAME"
+                                    class="form-control"
+                                    [(ngModel)]="userInput.FIRST_NAME"
+                                    required
+                                    maxlength="32"
+                                    #FIRST_NAME="ngModel"
+                                />
+                                <div *ngIf="!(FIRST_NAME.valid || FIRST_NAME.pristine)" class="alert alert-danger">
+                                    <div *ngIf="FIRST_NAME.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="FIRST_NAME.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
+                                </div>
+                        </div>
+                        <div class="col-sm-6">
+                                <label for="LAST_NAME">Last Name</label>
+                                <input
+                                    id="LAST_NAME"
+                                    name="LAST_NAME"
+                                    class="form-control"
+                                    [(ngModel)]="userInput.LAST_NAME"
+                                    required
+                                    maxlength="32"
+                                    #LAST_NAME="ngModel"
+                                />
+                                <div *ngIf="!(LAST_NAME.valid || LAST_NAME.pristine)" class="alert alert-danger">
+                                    <div *ngIf="LAST_NAME.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="LAST_NAME.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
+                                </div>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col-sm-3">
+                                <label for="PHONE">Phone</label>
+                                <input
+                                    id="PHONE"
+                                    name="PHONE"
+                                    class="form-control"
+                                    [(ngModel)]="userInput.PHONE"
+                                    required
+                                    maxlength="32"
+                                    #PHONE="ngModel"
+                                />
+                                <div *ngIf="!(PHONE.valid || PHONE.pristine)" class="alert alert-danger">
+                                    <div *ngIf="PHONE.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="PHONE.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
+                                </div>
+                        </div>
+                        <div class="col-sm-9">
+                                <label for="ADDRESS">Address</label>
+                                <input
+                                    id="ADDRESS"
+                                    name="ADDRESS"
+                                    class="form-control"
+                                    [(ngModel)]="userInput.ADDRESS"
+                                    required
+                                    maxlength="64"
+                                    #ADDRESS="ngModel"
+                                />
+                                <div *ngIf="!(ADDRESS.valid || ADDRESS.pristine)" class="alert alert-danger">
+                                    <div *ngIf="ADDRESS.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="ADDRESS.errors.maxlength">Il campo deve essere massimo di 64 caratteri</div>
+                                </div>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+        
+                            <div class="col-sm-6">
+                                    <label for="CITY">City</label>
+                                    <input
+                                        id="CITY"
+                                        name="CITY"
+                                        class="form-control"
+                                        [(ngModel)]="userInput.CITY"
+                                        required
+                                        maxlength="32"
+                                        #CITY="ngModel"
+                                    />
+                                    <div *ngIf="!(CITY.valid || CITY.pristine)" class="alert alert-danger">
+                                        <div *ngIf="CITY.errors.required">Il campo è obbligatorio</div>
+                                        <div *ngIf="CITY.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
+                                    </div>
+                            </div>
+        
+                        <div class="col-sm-2">
+                                <label for="POSTAL_CODE">Postal Code</label>
+                                <input
+                                    id="POSTAL_CODE"
+                                    name="POSTAL_CODE"
+                                    class="form-control"
+                                    [(ngModel)]="userInput.POSTAL_CODE"
+                                    required
+                                    maxlength="16"
+                                    #POSTAL_CODE="ngModel"
+                                />
+                                <div *ngIf="!(POSTAL_CODE.valid || POSTAL_CODE.pristine)" class="alert alert-danger">
+                                    <div *ngIf="POSTAL_CODE.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="POSTAL_CODE.errors.maxlength">Il campo deve essere massimo di 16 caratteri</div>
+                                </div>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                                <label for="COUNTRY">Country</label>
+                                <input
+                                    id="COUNTRY"
+                                    name="COUNTRY"
+                                    class="form-control"
+                                    [(ngModel)]="userInput.COUNTRY"
+                                    required
+                                    maxlength="32"
+                                    #COUNTRY="ngModel"
+                                />
+                                <div *ngIf="!(COUNTRY.valid || COUNTRY.pristine)" class="alert alert-danger">
+                                    <div *ngIf="COUNTRY.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="COUNTRY.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
+                                </div>
+                        </div>
+                    </div>
+                
+                </div>
+                <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Submit</button>
+                <a class="btn btn-primary" [routerLink]="['/login']">Torna alla login</a>
+                </form>
+        </div>
+</div>
+

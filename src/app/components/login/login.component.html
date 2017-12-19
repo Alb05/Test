@@ -1,40 +1,64 @@
-<div class="col-sm-4 col-sm-offset-4">
-    <h3>Login</h3>
-    <form (ngSubmit)="OnSubmit()" #userForm="ngForm">
-        <div class="form-group">
-            <label for="MAIL">Mail</label>
-            <input
-                id="MAIL"
-                name="MAIL"
-                class="form-control"
-                [(ngModel)]="userInput.MAIL"
-                required
-                maxlength="64"
-                appValidate="^.+\@.+\..{2,}$"
-                #MAIL="ngModel"
-            />
-            <div *ngIf="!(MAIL.valid || MAIL.pristine)" class="alert alert-danger">
-                <div *ngIf="MAIL.errors.required">Il campo è obbligatorio</div>
-                <div *ngIf="MAIL.errors.maxlength">Il campo deve essere massimo di 64 caratteri</div>
-                <div *ngIf="MAIL.errors.appValidate">La mail inserita non è corretta</div>
+<div class="row">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-login" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand">Di Mano In Mano</a>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-right" id="navbar-login">
+                        <h4 class="navbar-text">Login</h4>
+                    </div>
+                </div>
+            </nav>
+</div>
+
+<div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <h1 class="display-1">Benvenuto</h1>
+                <form (ngSubmit)="OnSubmit()" #userForm="ngForm">
+                    <div class="form-group">
+                        <label for="MAIL">Mail</label>
+                        <input
+                            id="MAIL"
+                            name="MAIL"
+                            class="form-control"
+                            [(ngModel)]="userInput.MAIL"
+                            required
+                            maxlength="64"
+                            appValidate="^.+\@.+\..{2,}$"
+                            #MAIL="ngModel"
+                        />
+                        <div *ngIf="!(MAIL.valid || MAIL.pristine)" class="alert alert-danger">
+                            <div *ngIf="MAIL.errors.required">Il campo è obbligatorio</div>
+                            <div *ngIf="MAIL.errors.maxlength">Il campo deve essere massimo di 64 caratteri</div>
+                            <div *ngIf="MAIL.errors.appValidate">La mail inserita non è corretta</div>
+                        </div>
+                        <label for="PASSWORD">Password</label>
+                        <input
+                            id="PASSWORD"
+                            name="PASSWORD"
+                            class="form-control"
+                            type="password"
+                            [(ngModel)]="userInput.PASSWORD"
+                            required
+                            minlength="8"
+                            #PASSWORD="ngModel"
+                        />
+                        <div *ngIf="!(PASSWORD.valid || PASSWORD.pristine)" class="alert alert-danger">
+                            <div *ngIf="PASSWORD.errors.required">Il campo è obbligatorio</div>
+                            <div *ngIf="PASSWORD.errors.minlength">La password deve essere di almeno 8 caratteri</div>
+                        </div>
+                        <div class="mettiasinistra">
+                            <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Login</button>
+                            <a class="btn btn-primary" [routerLink]="['/registration']">Registrati</a>
+                        </div>
+                        
+                    </div>
+                </form>
             </div>
-            <label for="PASSWORD">Password</label>
-            <input
-                id="PASSWORD"
-                name="PASSWORD"
-                class="form-control"
-                type="password"
-                [(ngModel)]="userInput.PASSWORD"
-                required
-                minlength="8"
-                #PASSWORD="ngModel"
-            />
-            <div *ngIf="!(PASSWORD.valid || PASSWORD.pristine)" class="alert alert-danger">
-                <div *ngIf="PASSWORD.errors.required">Il campo è obbligatorio</div>
-                <div *ngIf="PASSWORD.errors.minlength">La password deve essere di almeno 8 caratteri</div>
-            </div>
-            <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Login</button>
-            <a class="btn btn-primary" [routerLink]="['/registration']">Registrati</a>
-        </div>
-    </form>
 </div>

@@ -1,11 +1,8 @@
-h3 {
-  margin-top: 5rem;
+.btn, label {
+  margin-top: 1rem;
+  text-align: left;
 }
 
-.btn {
-  margin-top: 1rem;
-}
-
-label {
-  margin-top: 1rem;
+form {
+  margin-top: 15rem;
 }
