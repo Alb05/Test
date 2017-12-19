@@ -106,10 +106,12 @@
                                     [(ngModel)]="userInput.FIRST_NAME"
                                     required
                                     maxlength="32"
+                                    pattern="^[a-zA-z]+$"
                                     #FIRST_NAME="ngModel"
                                 />
                                 <div *ngIf="!(FIRST_NAME.valid || FIRST_NAME.pristine)" class="alert alert-danger">
                                     <div *ngIf="FIRST_NAME.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="FIRST_NAME.errors.pattern">il nome inserito non è valido</div>
                                     <div *ngIf="FIRST_NAME.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
                                 </div>
                         </div>
@@ -121,11 +123,13 @@
                                     class="form-control"
                                     [(ngModel)]="userInput.LAST_NAME"
                                     required
+                                    pattern="^[a-zA-z]+$"
                                     maxlength="32"
                                     #LAST_NAME="ngModel"
                                 />
                                 <div *ngIf="!(LAST_NAME.valid || LAST_NAME.pristine)" class="alert alert-danger">
                                     <div *ngIf="LAST_NAME.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="LAST_NAME.errors.pattern">Il cognome inserito non è valido</div>
                                     <div *ngIf="LAST_NAME.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
                                 </div>
                         </div>
@@ -140,11 +144,13 @@
                                     class="form-control"
                                     [(ngModel)]="userInput.PHONE"
                                     required
+                                    pattern="^[0-9]+$"
                                     maxlength="32"
                                     #PHONE="ngModel"
                                 />
                                 <div *ngIf="!(PHONE.valid || PHONE.pristine)" class="alert alert-danger">
                                     <div *ngIf="PHONE.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="PHONE.errors.pattern">Il numero inserito non è valido</div>
                                     <div *ngIf="PHONE.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
                                 </div>
                         </div>
@@ -176,11 +182,13 @@
                                         class="form-control"
                                         [(ngModel)]="userInput.CITY"
                                         required
+                                        pattern="^[a-zA-z]+$"
                                         maxlength="32"
                                         #CITY="ngModel"
                                     />
                                     <div *ngIf="!(CITY.valid || CITY.pristine)" class="alert alert-danger">
                                         <div *ngIf="CITY.errors.required">Il campo è obbligatorio</div>
+                                        <div *ngIf="CITY.errors.pattern">La città inserita non è valida</div>
                                         <div *ngIf="CITY.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
                                     </div>
                             </div>
@@ -193,11 +201,13 @@
                                     class="form-control"
                                     [(ngModel)]="userInput.POSTAL_CODE"
                                     required
+                                    pattern="^[0-9]+$"
                                     maxlength="16"
                                     #POSTAL_CODE="ngModel"
                                 />
                                 <div *ngIf="!(POSTAL_CODE.valid || POSTAL_CODE.pristine)" class="alert alert-danger">
                                     <div *ngIf="POSTAL_CODE.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="POSTAL_CODE.errors.pattern">il codice postale inserito non è valido</div>
                                     <div *ngIf="POSTAL_CODE.errors.maxlength">Il campo deve essere massimo di 16 caratteri</div>
                                 </div>
                         </div>
@@ -210,16 +220,17 @@
                                     class="form-control"
                                     [(ngModel)]="userInput.COUNTRY"
                                     required
+                                    pattern="^[a-zA-Z]*$"
                                     maxlength="32"
                                     #COUNTRY="ngModel"
                                 />
                                 <div *ngIf="!(COUNTRY.valid || COUNTRY.pristine)" class="alert alert-danger">
                                     <div *ngIf="COUNTRY.errors.required">Il campo è obbligatorio</div>
+                                    <div *ngIf="COUNTRY.errors.pattern">Il paese inserito non è valido</div>
                                     <div *ngIf="COUNTRY.errors.maxlength">Il campo deve essere massimo di 32 caratteri</div>
                                 </div>
                         </div>
                     </div>
-                
                 </div>
                 <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Submit</button>
                 <a class="btn btn-primary" [routerLink]="['/login']">Torna alla login</a>
