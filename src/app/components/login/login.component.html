@@ -10,8 +10,8 @@
                         </button>
                         <a class="navbar-brand">Di Mano In Mano</a>
                     </div>
-                    <div class="collapse navbar-collapse" id="navbar-login">
-                        <h4><p class="navbar-text">Login</p></h4>
+                    <div class="collapse navbar-collapse navbar-right" id="navbar-login">
+                        <h4 class="navbar-text">Login</h4>
                     </div>
                 </div>
             </nav>
@@ -19,6 +19,7 @@
 
 <div class="row">
         <div class="col-sm-4 col-sm-offset-4">
+            <h1 class="display-1">Benvenuto</h1>
                 <form (ngSubmit)="OnSubmit()" #userForm="ngForm">
                     <div class="form-group">
                         <label for="MAIL">Mail</label>
@@ -52,8 +53,11 @@
                             <div *ngIf="PASSWORD.errors.required">Il campo è obbligatorio</div>
                             <div *ngIf="PASSWORD.errors.minlength">La password deve essere di almeno 8 caratteri</div>
                         </div>
-                        <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Login</button>
-                        <a class="btn btn-primary" [routerLink]="['/registration']">Registrati</a>
+                        <div class="mettiasinistra">
+                            <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Login</button>
+                            <a class="btn btn-primary" [routerLink]="['/registration']">Registrati</a>
+                        </div>
+                        
                     </div>
                 </form>
             </div>

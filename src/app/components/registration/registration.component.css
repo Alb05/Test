@@ -1,13 +1,8 @@
-h4 {
-  margin-top: 0rem;
-  margin-right: 30rem;
-}
-
 .btn, label {
   margin-top: 1rem;
+  text-align: left;
 }
 
 form {
   margin-top: 15rem;
-  text-align: center;
 }
