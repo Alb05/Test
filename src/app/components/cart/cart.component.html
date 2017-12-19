@@ -12,11 +12,11 @@
                     <a class="navbar-brand" [routerLink]="['/home']">Di Mano In Mano</a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-cart">
-                    <p class="navbar-text">Carrello</p>
+                    <p class="navbar-text"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Carrello</p>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a [routerLink]="['/home']">Torna al negozio</a></li>
-                        <li><a *ngIf="myBooks" (click)="Order()">Ordina</a></li>
-                        <li><a (click)="Logout()">Logout</a></li>
+                        <li><a [routerLink]="['/home']"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Torna al negozio</a></li>
+                        <li><a *ngIf="myBooks" (click)="Order()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Ordina</a></li>
+                        <li><a (click)="Logout()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Logout</a></li>
                     </ul>
                 </div>
             </div>
