@@ -6,12 +6,6 @@ label {
   margin-top: 1rem;
 }
 
-h1 {
-  margin-top: 12rem;
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
 form {
   padding: 3rem 7rem 5rem;
   /* background:rgb(230, 229, 224); */
@@ -23,4 +17,12 @@ form {
 h3{
   text-align: center;
   margin-bottom: 2rem;
+}
+
+.logo {
+  margin: 0 auto;
+}
+
+.spazio-sopra {
+  margin-top: 6rem;
 }
