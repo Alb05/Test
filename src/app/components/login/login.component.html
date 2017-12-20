@@ -1,5 +1,5 @@
 <div class="row">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-login" aria-expanded="false">
@@ -55,8 +55,8 @@
                             <div *ngIf="PASSWORD.errors.minlength">La password deve essere di almeno 8 caratteri</div>
                         </div>
                         <div class="mettiasinistra">
-                            <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Login</button>
-                            <a class="btn btn-primary" [routerLink]="['/registration']">Registrati</a>
+                            <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-info">Login</button>
+                            <a class="btn btn-warning" [routerLink]="['/registration']">Registrati</a>
                         </div>
                         
                     </div>

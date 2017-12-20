@@ -1,6 +1,6 @@
 <div class='col-sm-12'>
     <div class='row'>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-home" aria-expanded="false">
@@ -30,7 +30,7 @@
                                 placeholder="Title"
                             />
                         </div>
-                        <button type="submit" [disabled]="!searchForm.form.valid" class="btn btn-default">Cerca</button>
+                        <button type="submit" [disabled]="!searchForm.form.valid" class="btn btn-warning">Cerca</button>
                     </form>
                     <form *ngIf="categories" class="navbar-form navbar-right" role="filter" (ngSubmit)="CategoryFilter()" #categoryForm="ngForm">
                         <div class="form-group">
@@ -46,7 +46,7 @@
                                 <option *ngFor="let category of categories" value="{{ category.CATEGORY_ID }}">{{ category.CATEGORY_NAME }}</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-default">Filtra</button>
+                        <button type="submit" class="btn btn-warning">Filtra</button>
                     </form>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                                             #qty
                                         />
                                         <span class="input-group-btn">
-                                            <button type="button" class="btn btn-success" (click)="AddToCart(bookid.value, qty.value)">Aggiungi</button>
+                                            <button type="button" class="btn btn-info" (click)="AddToCart(bookid.value, qty.value)">Aggiungi</button>
                                         </span>
                                     </div>
                                 </div>
