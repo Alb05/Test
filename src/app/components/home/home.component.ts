@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ICategory } from '../../models/category.model';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IPage } from '../../models/page.model';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,9 @@ export class HomeComponent implements OnInit{
   public categories: ICategory[];
   public inputCat: ICategory;
   public inputBook: IBook;
+  public currentPageNr: number;
+  public pages: number;
+  public page: IBook[];
 
   @ViewChild("categoryForm")
   categoryForm: NgForm;
@@ -54,6 +58,8 @@ export class HomeComponent implements OnInit{
     this.http.get<IBook[]>('http://api.mano/api/elenco.php')
     .subscribe(data => {
       this.books = data;
+      this.pages = Math.ceil(this.books.length / 20);
+      this.SetPage(1);
     });
 
     this.http.get<ICategory[]>('http://api.mano/api/categorie.php')
@@ -64,22 +70,36 @@ export class HomeComponent implements OnInit{
 
   SearchTitle() {
     if (this.inputCat.CATEGORY_ID != null && this.inputCat.CATEGORY_ID > 0) {
-      this.http.get<IBook[]>(`http://api.mano/api/elenco.php?title=${this.inputBook.TITLE}&category=${this.inputCat.CATEGORY_ID}`)
-      .subscribe(data => {
-        this.books = data;
-      });
+      this.FullFilter();
     } else {
       this.http.get<IBook[]>(`http://api.mano/api/elenco.php?title=${this.inputBook.TITLE}`)
       .subscribe(data => {
         this.books = data;
+        this.pages = Math.ceil(this.books.length / 20);
+        this.SetPage(1);
       });
     }
   }
 
   CategoryFilter() {
-    this.http.get<IBook[]>(`http://api.mano/api/elenco.php?category=${this.inputCat.CATEGORY_ID}`)
+    if (this.inputBook.TITLE != null && this.inputBook.TITLE.length > 0) {
+      this.FullFilter();
+    } else {
+      this.http.get<IBook[]>(`http://api.mano/api/elenco.php?category=${this.inputCat.CATEGORY_ID}`)
+      .subscribe(data => {
+        this.books = data;
+        this.pages = Math.ceil(this.books.length / 20);
+        this.SetPage(1);
+      });
+    }
+  }
+
+  FullFilter() {
+    this.http.get<IBook[]>(`http://api.mano/api/elenco.php?title=${this.inputBook.TITLE}&category=${this.inputCat.CATEGORY_ID}`)
     .subscribe(data => {
       this.books = data;
+      this.pages = Math.ceil(this.books.length / 20);
+      this.SetPage(1);
     });
   }
 
@@ -102,5 +122,25 @@ export class HomeComponent implements OnInit{
         alert("C'è stato un errore nel logout");
       }
     });
+  }
+
+  SetPage(pageNr: number) {
+    this.currentPageNr = pageNr;
+    let offsetStart: number = (this.currentPageNr - 1) * 20;
+    this.page = this.books.slice(offsetStart, offsetStart + 20);
+  }
+
+  NextPage() {
+    if (this.currentPageNr < this.pages) {
+      ++this.currentPageNr;
+      this.SetPage(this.currentPageNr);
+    }
+  }
+
+  PrevPage() {
+    if (this.currentPageNr > 1) {
+      --this.currentPageNr;
+      this.SetPage(this.currentPageNr);
+    }
   }
 }
