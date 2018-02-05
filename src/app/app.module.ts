@@ -12,6 +12,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { ValidateDirective } from './directives/validate.directive';
 import { CartComponent } from './components/cart/cart.component';
 import { EqualValidator } from './directives/password.directive';
+import { DeliveryComponent } from './components/delivery/delivery.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { EqualValidator } from './directives/password.directive';
     RegistrationComponent,
     ValidateDirective,
     CartComponent,
-    EqualValidator
+    EqualValidator,
+    DeliveryComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,7 @@ import { EqualValidator } from './directives/password.directive';
       { path: 'registration', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
       { path: 'cart', component: CartComponent },
+      { path: 'delivery', component: DeliveryComponent },
       { path: '**', redirectTo: 'login' }
     ])
   ],

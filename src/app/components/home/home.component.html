@@ -15,6 +15,7 @@
                     <p class="navbar-text"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Shop</p>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a [routerLink]="['/cart']"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Vai al carrello</a></li>
+                        <li><a [routerLink]="['/delivery']"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Ordini effettuati</a></li>
                         <li><a class="pointerCursor" (click)="Logout()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Logout</a></li>
                     </ul>
                     <form class="navbar-form navbar-right" role="search" (ngSubmit)="SearchTitle()" #searchForm="ngForm">
@@ -38,7 +39,7 @@
                             <select
                                 id="CATEGORY_ID"
                                 name="CATEGORY_ID"
-                                class="form-control"
+                                class="form-control larghezza-predefinita"
                                 [(ngModel)]="inputCat.CATEGORY_ID"
                                 #CATEGORY_ID="ngModel"
                             >
@@ -93,8 +94,8 @@
                 <tbody>
                     <tr *ngIf="page.length < 1"><p>Nessun libro disponibile</p></tr>
                     <tr *ngFor="let book of page">
-                        <td *ngIf="book.PHOTO === null"><img src="/img/placeholder.png" width="50"></td>
-                        <td *ngIf="book.PHOTO !== null"><img src="{{ book.PHOTO }}" width="50"></td>
+                        <td *ngIf="book.PHOTO === null"><img class="img-thumbnail" src="/img/placeholder.png" width="200rem"></td>
+                        <td *ngIf="book.PHOTO !== null"><img class="img-thumbnail" src="{{ book.PHOTO }}" width="200rem"></td>
                         <td>{{ book.TITLE }}</td>
                         <td>{{ book.ISBN }}</td>
                         <td>{{ book.AUTHOR }}</td>
