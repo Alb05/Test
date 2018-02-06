@@ -13,6 +13,8 @@ import { ValidateDirective } from './directives/validate.directive';
 import { CartComponent } from './components/cart/cart.component';
 import { EqualValidator } from './directives/password.directive';
 import { DeliveryComponent } from './components/delivery/delivery.component';
+import { AdminDeliveryComponent } from './components/admin-delivery/admin-delivery.component';
+import { AdminIntelligenceComponent } from './components/admin-intelligence/admin-intelligence.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { DeliveryComponent } from './components/delivery/delivery.component';
     ValidateDirective,
     CartComponent,
     EqualValidator,
-    DeliveryComponent
+    DeliveryComponent,
+    AdminDeliveryComponent,
+    AdminIntelligenceComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,8 @@ import { DeliveryComponent } from './components/delivery/delivery.component';
       { path: 'login', component: LoginComponent },
       { path: 'cart', component: CartComponent },
       { path: 'delivery', component: DeliveryComponent },
+      { path: 'admindelivery', component: AdminDeliveryComponent },
+      { path: 'adminintelligence', component: AdminIntelligenceComponent },
       { path: '**', redirectTo: 'login' }
     ])
   ],

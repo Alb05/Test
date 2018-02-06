@@ -55,4 +55,14 @@ export class DeliveryComponent implements OnInit {
       this.myOrders = data;
     });
   }
+
+  Logout() {
+    this.http.get<boolean>('http://api.mano/api/logout.php').subscribe(data=> {
+      if (data) {
+        this.router.navigate(['login']);
+      } else {
+        alert("C'è stato un errore nel logout");
+      }
+    });
+  }
 }
