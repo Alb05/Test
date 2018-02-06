@@ -30,7 +30,7 @@ export class AdminIntelligenceComponent implements OnInit {
       }
     });
 
-    this.http.get<IIntelligence>('http://api.mano/api/adstat.php')
+    this.http.get<IIntelligence>('http://api.mano/api/intelligence.php')
     .subscribe(data => {
       this.stats = data;
     });
