@@ -43,7 +43,8 @@ export class HomeComponent implements OnInit{
       PRICE: null,
       PUB_DATE: null,
       QUANTITY: 1,
-      TITLE: null
+      TITLE: null,
+      PHOTO: null
     };
   }
 

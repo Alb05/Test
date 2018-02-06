@@ -79,7 +79,7 @@
                                                 #rmQty
                                             />
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-warning">Modifica Quantità</button>
+                                                <button type="button" class="btn btn-warning" (click)="ReturnItem(rmOrderId.value, rmItemId.value, rmQty.value)">Modifica Quantità</button>
                                             </span>
                                         </div>
                                     </div>
@@ -90,7 +90,14 @@
                 </table>
             </div>
             <div class="row">
-                <button class="btn btn-danger">Cancella ordine</button>
+                <input
+                    name="OrdId"
+                    type="hidden"
+                    class="form-control"
+                    value="{{ order.ORDER_ID }}"
+                    #OrdId
+                />
+                <button class="btn btn-danger" (click)="RemoveOrder(OrdId.value)">Cancella ordine</button>
             </div>
         </div>
     </div>

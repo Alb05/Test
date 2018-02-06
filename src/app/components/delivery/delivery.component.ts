@@ -28,21 +28,31 @@ export class DeliveryComponent implements OnInit {
     });
   }
 
-  ReturnItem(orderId: number, bookId: number) {
-    this.http.post<boolean>('http://api.mano/api/reso.php', { 'method': 'returnItem', 'orderid': orderId, 'bookid': bookId })
+  ReturnItem(orderId: number, bookId: number, bookQty: number) {
+    this.http.post<boolean>('http://api.mano/api/reso.php', { 'method': 'returnItem', 'orderid': orderId, 'bookid': bookId, 'bookqty':  bookQty })
     .subscribe(data => {
       if (!data) {
         alert("c'è stato un problema con la restituzione dell'oggetto");
       }
     });
+
+    this.http.get<IOrder[]>('http://api.mano/api/reso.php')
+    .subscribe(data => {
+      this.myOrders = data;
+    });
   }
 
   RemoveOrder(orderId: number) {
-    this.http.post<boolean>('http://api.mano/api/reso.php', { 'method': 'removeOrder', 'orderid': orderId })
+    this.http.post<any>('http://api.mano/api/reso.php', { 'method': 'removeOrder', 'orderid': orderId })
     .subscribe(data => {
       if (!data) {
         alert("c'è stato un problema con la rimozione dell'ordine");
       }
+    });
+
+    this.http.get<IOrder[]>('http://api.mano/api/reso.php')
+    .subscribe(data => {
+      this.myOrders = data;
     });
   }
 }
