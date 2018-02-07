@@ -22,9 +22,13 @@
             </div>
         </nav>
     </div>
+    <div class="row" *ngIf="!myBooks" id="cart-warn">
+        <div class="col-sm-3 col-sm-offset-5">
+            <h4><em>Nessun elemento nel carrello</em></h4>
+        </div>
+    </div>
     <div class='row'>
         <div class='col-sm-12'>
-            <p *ngIf="!myBooks" id="cart-warn"><em>Nessun elemento nel carrello</em></p>
             <table class='table' *ngIf="myBooks">
                 <thead>
                   <tr>
