@@ -57,9 +57,9 @@
                             <td>{{ item.QUANTITY_SOLD }}</td>
                             <td>{{ item.QUANTITY_RETURNED }}</td>
                             <td>{{ item.STATUS_TYPE }}</td>
-                            <td>
+                            <td *ngIf="item.STATUS_ID < 2">
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-sm-9">
                                         <input
                                             name="rmOrderId"
                                             type="hidden"
@@ -85,11 +85,14 @@
                                                 #rmQty
                                             />
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-warning" (click)="ReturnItem(rmOrderId.value, rmItemId.value, rmQty.value)">Modifica Quantità</button>
+                                                <button type="button" class="btn btn-warning" (click)="ReturnItem(rmOrderId.value, rmItemId.value, rmQty.value)">Rendi</button>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
+                            </td>
+                            <td *ngIf="item.STATUS_ID >= 2">
+                                Non Eseguibile
                             </td>
                         </tr>
                     </tbody>
@@ -103,7 +106,7 @@
                     value="{{ order.ORDER_ID }}"
                     #OrdId
                 />
-                <button class="btn btn-danger" (click)="RemoveOrder(OrdId.value)">Cancella ordine</button>
+                <button class="btn btn-danger" (click)="RemoveOrder(OrdId.value)">Rendi Tutto</button>
             </div>
         </div>
     </div>

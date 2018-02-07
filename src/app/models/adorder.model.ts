@@ -1,8 +1,11 @@
 import { Data } from "@angular/router/src/config";
 
-export interface IOrder {
+export interface IAdOrder {
   ORDER_ID: number,
   ORDER_DATE: Data,
+  USER_ID: number,
+  NAME: string,
+  MAIL: string,
   ITEMS: {
     BOOK_ID: number,
     TITLE: string,
