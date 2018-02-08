@@ -1,8 +1,6 @@
-import { Data } from "@angular/router/src/config";
-
 export interface IOrder {
   ORDER_ID: number,
-  ORDER_DATE: Data,
+  ORDER_DATE: Date,
   ITEMS: {
     BOOK_ID: number,
     TITLE: string,
