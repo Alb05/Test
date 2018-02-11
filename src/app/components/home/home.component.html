@@ -15,7 +15,8 @@
                     <p class="navbar-text"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Shop</p>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a [routerLink]="['/cart']"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Vai al carrello</a></li>
-                        <li><a (click)="Logout()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Logout</a></li>
+                        <li><a [routerLink]="['/delivery']"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Ordini effettuati</a></li>
+                        <li><a class="pointerCursor" (click)="Logout()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Logout</a></li>
                     </ul>
                     <form class="navbar-form navbar-right" role="search" (ngSubmit)="SearchTitle()" #searchForm="ngForm">
                         <div class="form-group">
@@ -38,7 +39,7 @@
                             <select
                                 id="CATEGORY_ID"
                                 name="CATEGORY_ID"
-                                class="form-control"
+                                class="form-control larghezza-predefinita"
                                 [(ngModel)]="inputCat.CATEGORY_ID"
                                 #CATEGORY_ID="ngModel"
                             >
@@ -52,13 +53,32 @@
             </div>
         </nav>
     </div>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-5">
+            <nav *ngIf="page" id="pagenr" aria-label="Page navigation">
+                <ul class="pagination pagination-sm">
+                    <li (click)="PrevPage()">
+                    <span aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </span>
+                    </li>
+                    <li><span>{{ currentPageNr }} &#92; {{ pages }}</span></li>
+                    <li (click)="NextPage()">
+                    <span aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
     <div class='row'>
         <div class='col-sm-12'>
-            <p *ngIf="!books" id="loading-books"><em>Loading books...</em></p>
-
-            <table class='table' *ngIf="books">
+            <p *ngIf="!page" id="loading-books"><em>Loading books...</em></p>
+            <table class='table' *ngIf="page">
                 <thead>
                     <tr>
+                        <th>Immagine</th>
                         <th>Titolo</th>
                         <th>ISBN</th>
                         <th>Autore</th>
@@ -72,8 +92,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngIf="books.length < 1"><p>Nessun libro disponibile</p></tr>
-                    <tr *ngFor="let book of books">
+                    <tr *ngIf="page.length < 1"><p>Nessun libro disponibile</p></tr>
+                    <tr *ngFor="let book of page">
+                        <td *ngIf="book.PHOTO === null"><img class="img-thumbnail" src="/img/placeholder.png" width="200rem"></td>
+                        <td *ngIf="book.PHOTO !== null"><img class="img-thumbnail" src="{{ book.PHOTO }}" width="200rem"></td>
                         <td>{{ book.TITLE }}</td>
                         <td>{{ book.ISBN }}</td>
                         <td>{{ book.AUTHOR }}</td>

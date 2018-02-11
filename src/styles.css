@@ -2,3 +2,11 @@
 body {
     font-family: 'Noto Sans', sans-serif;
 }
+
+.pointerCursor {
+    cursor: pointer;
+}
+
+.sk-cube {
+    background-color: #ec971f !important;
+}

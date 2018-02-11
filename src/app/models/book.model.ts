@@ -8,5 +8,6 @@ export interface IBook {
   PAGES: number,
   PUB_DATE: string,
   PRICE: number,
-  QUANTITY: number
+  QUANTITY: number,
+  PHOTO: string
 }

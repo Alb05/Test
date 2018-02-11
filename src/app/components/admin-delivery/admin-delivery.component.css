@@ -1,0 +1,17 @@
+.margine {
+  margin-bottom: 8rem;
+}
+
+.bordo-bello {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
+  margin-bottom: 3rem;
+  padding: 1rem 3rem;
+}
+
+h3, h5 {
+  color: #5bc0de;
+}
+
+.margine-btn {
+  margin-bottom: 0.5rem;
+}

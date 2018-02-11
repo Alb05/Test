@@ -1,3 +1,7 @@
-table, #loading-books {
+#pagenr, #loading-books {
   margin-top: 6rem;
+}
+
+.larghezza-predefinita {
+  width: 200px;
 }
